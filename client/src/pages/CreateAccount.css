@@ -1,0 +1,11 @@
+.creation-form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.creation-form button{
+    max-width: 100px;
+}
