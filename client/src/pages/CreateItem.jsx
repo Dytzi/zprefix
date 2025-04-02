@@ -1,28 +1,31 @@
 import axios from "axios";
 import "./CreateAccount.css";
+import { useNavigate } from "react-router-dom";
 
 
 // page to create a new user 
-const CreateAccount = ({ api}) => {
+const CreateItem = ({ api, userId}) => {
+    const navigate = useNavigate()
   async function createAccount(formData) {
-    let userName = formData.get("userName");
-    let password = formData.get("password");
-    let firstName = formData.get("firstName");
-    let lastName = formData.get("lastName")
+    let item_name = formData.get("item_name");
+    let description = formData.get("description");
+    let quantity = formData.get("quantity");
 
-    const apiUrl = `${api}/users-create`;
+
+    const apiUrl = `${api}/item-create`;
     console.log(apiUrl);
 
     try {
       const response = await axios.post(apiUrl, {
-        username: userName,
-        password: password,
-        firstName: firstName,
-        lastName: lastName
+        user_id : userId,
+        item_name: item_name,
+        description: description,
+        quantity: quantity,
       });
 
-      console.log("Account Created", response.data);
-      alert("Account Successfully Created")
+      console.log("Item Added", response.data);
+      alert("Item Successfully Created, You'll Now Be Redirected To Your Inventory")
+      navigate('/my-inventory')
     
     } catch (err) {
       console.log(err);
@@ -40,16 +43,13 @@ const CreateAccount = ({ api}) => {
         <form action={createAccount}>
         <div className="creation-form">
           <label>
-            First Name: <input name="firstName"></input>
+            Item Name: <input name="item_name"></input>
           </label>
           <label>
-            Last Name: <input name="lastName"></input>
+            Description: <input name="description"></input>
           </label>
           <label>
-            User Name: <input name="userName"></input>
-          </label>
-          <label>
-            Password: <input name="password"></input>
+            Quantity:  <input name="quantity"></input>
           </label>
           <button type="submit"> Create </button>
           </div>
@@ -59,4 +59,4 @@ const CreateAccount = ({ api}) => {
   );
 };
 
-export default CreateAccount;
+export default CreateItem;

@@ -1,21 +1,27 @@
+// page to handle login 
+
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const Login = ({ api, setUserId }) => {
+  const navigate = useNavigate()
   async function login(formData) {
+    // set the data from form
     let userName = formData.get("userName");
     let password = formData.get("password");
     const apiUrl = `${api}/users`;
-    console.log(apiUrl);
 
+    //post request to /users
     try {
       const response = await axios.post(apiUrl, {
         username: userName,
         password: password,
       });
 
-      console.log("Login successful", response.data);
-      console.log(response.data.id);
-      setUserId(response.data.id)
+      alert("Login successful, You'll Now Be Redirected To Your Inventory")
+
+      setUserId(response.data.id); // set UserId to imitate a logged in user
+      navigate('/my-inventory')
     } catch (err) {
       console.log(err);
       if(err.response){

@@ -6,7 +6,7 @@ import Divider from '@mui/material/Divider';
 const Layout = ({userId}) => {
   return (
     <Stack spacing={2} divider={<Divider orientation="horizontal" flexItem />}>
-      <Navbar></Navbar>
+      <Navbar userId = {userId}></Navbar>
         <p>Logged in as {userId}</p>
       <h1>Inventory Management System</h1>
       <Outlet />

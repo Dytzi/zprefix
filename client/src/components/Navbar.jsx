@@ -1,13 +1,20 @@
-import {Link} from "react-router-dom"
+import { Link } from "react-router-dom";
 
-const Navbar = () => {
-    return (
-      <nav>
+const Navbar = ({ userId }) => {
+  return (
+    <nav>
+      <div style={{ display: "flex", justifyContent: "space-between" }}>
         <Link to="/">Home </Link>
-        <Link to = '/login'>Login </Link>
-        <Link to = '/create-account'>Create_User</Link>
-      </nav>
-    );
-  }
-  
+        <Link to="/login">Login </Link>
+        <Link to="/create-account">Create User</Link>
+        <Link to="/my-inventory">My Inventory</Link>
+        {/* conditionally renders the create item link if user is logged in */}
+        {userId  ? <Link to="/create-item">Create Item</Link> : null} 
+
+        <Link to='/items'>All Items</Link>
+      </div>
+    </nav>
+  );
+};
+
 export default Navbar;

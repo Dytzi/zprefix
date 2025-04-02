@@ -13,6 +13,21 @@ app.get('/', (req, res) => res.send('Hello World'))
 
 app.listen(port, () => console.log(`app listening at http://localhost:${port}`))
 
+// get request for a specific item
+app.get('/items/:id', async function (req, res) {
+    const {id}= req.params;
+    try{
+        let itemData = await knex('items')
+        .select('*')
+        .where('id', id)
+
+        res.status(200).json(itemData)
+    }catch(err){
+        res.status(400).json({message: "an error occured", error: err.message })
+    }
+
+})
+
 
 // get request to retrieve every item
 app.get('/items', async function (req, res){
@@ -22,6 +37,22 @@ app.get('/items', async function (req, res){
     }catch (err){
         res.status(400).json({message: "an error occured", error: err.message })
 
+    }
+})
+
+// get request to retrieve every item belonging to the logged in user
+
+app.get('/my-inventory/:userid', async function(req,res) {
+    const {userid} = req.params
+    console.log(userid)
+    try{
+        let itemData = await knex('items')
+        .select('*')
+        .where('user_id', userid)
+
+        res.status(200).json(itemData)
+    }catch(err){
+        res.status(400).json({message: "an error occured", error: err.message })
     }
 })
 
@@ -87,3 +118,25 @@ app.post('/users-create', async function(req, res) {
     }catch(err){
         res.status(400).json({message: "an error occured", error: err.message })
     }})
+
+//post request for item creation
+
+app.post('/item-create', async function(req, res) {
+
+    const {user_id, item_name, description , quantity} = req.body
+
+    if(!user_id || !item_name || !description || !quantity){
+        res.status(400).json({message: "all forms must be filled out"})
+    }
+
+    try{
+        let newData = await knex('items')
+        .insert({user_id, item_name, description, quantity})
+        .returning("*");
+
+        res.status(200).json({message: "new item added", data: newData})
+        
+    }catch(err){
+        res.status(400).json({message: "an error occured", error: err.message })
+    }})
+
