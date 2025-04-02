@@ -27,7 +27,7 @@ app.get('/items/:id', async function (req, res) {
     }
 
 })
-// delete request
+// delete request for specific items
 
 app.delete('/items/:id', async function (req, res){
     const{id} = req.params
@@ -37,6 +37,34 @@ app.delete('/items/:id', async function (req, res){
 
         if (itemData) {
             res.json({message: `Item with ID ${id} deleted successfully.`});
+        } 
+        else {
+            res.status(400).json({ message: `Item with ID ${id} not found.` });
+        }
+
+    }catch(err){
+        res.status(400).json({message: "an error occured", error: err.message })        
+    }
+
+})
+
+// patch request for specific items
+
+app.patch('/items/:id', async function (req, res){
+    const{id} = req.params
+
+    const {item_name, description , quantity} = req.body
+    console.log(description)
+
+    if(!item_name || !description || !quantity){
+        res.status(400).json({message: "all forms must be filled out"})
+    }
+
+    try{
+        let itemData = await knex('items').where('id', id).update({'item_name': item_name, 'description': description, 'quantity':quantity})
+
+        if (itemData) {
+            res.json({message: `Item with ID ${id} updated successfully.`});
         } 
         else {
             res.status(400).json({ message: `Item with ID ${id} not found.` });

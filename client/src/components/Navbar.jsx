@@ -7,7 +7,7 @@ const Navbar = ({ userId }) => {
         <Link to="/">Home </Link>
         <Link to="/login">Login </Link>
         <Link to="/create-account">Create User</Link>
-        <Link to="/my-inventory">My Inventory</Link>
+        {userId  ? <Link to="/my-inventory">My Inventory</Link> : null} 
         {/* conditionally renders the create item link if user is logged in */}
         {userId  ? <Link to="/create-item">Create Item</Link> : null} 
 

@@ -6,14 +6,13 @@ import { useNavigate } from "react-router-dom";
 // page to create a new user 
 const CreateItem = ({ api, userId}) => {
     const navigate = useNavigate()
-  async function createAccount(formData) {
+  async function createItem(formData) {
     let item_name = formData.get("item_name");
     let description = formData.get("description");
     let quantity = formData.get("quantity");
 
 
     const apiUrl = `${api}/item-create`;
-    console.log(apiUrl);
 
     try {
       const response = await axios.post(apiUrl, {
@@ -40,7 +39,7 @@ const CreateItem = ({ api, userId}) => {
       <h1>Account Creation</h1>
       {/* run the createAccount function when submit is pressed */}
 
-        <form action={createAccount}>
+        <form action={createItem}>
         <div className="creation-form">
           <label>
             Item Name: <input name="item_name"></input>
