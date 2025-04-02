@@ -27,7 +27,26 @@ app.get('/items/:id', async function (req, res) {
     }
 
 })
+// delete request
 
+app.delete('/items/:id', async function (req, res){
+    const{id} = req.params
+    console.log('hi')
+    try{
+        let itemData = await knex('items').where('id', id).del();
+
+        if (itemData) {
+            res.json({message: `Item with ID ${id} deleted successfully.`});
+        } 
+        else {
+            res.status(400).json({ message: `Item with ID ${id} not found.` });
+        }
+
+    }catch(err){
+        res.status(400).json({message: "an error occured", error: err.message })        
+    }
+
+})
 
 // get request to retrieve every item
 app.get('/items', async function (req, res){

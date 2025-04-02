@@ -1,11 +1,36 @@
-const Home = ({api}) => {
-    console.log(api)
+import { useEffect, useState } from "react";
+import ItemCard from "../components/ItemCard";
 
-    return (
-      <>
-        <h1>Home</h1>
-      </>
-    );
-  };
+
+
+const AllItems = ({ api }) => {
+  const [inventory, setInventory] = useState(0);
+  const apiUrl = `${api}/items`;
+
+  useEffect(() => {
+      async function fetchInventory() {
+        let inventoryData = await fetch(`${apiUrl}`);
   
-  export default Home;
+        inventoryData = await inventoryData.json();
+        setInventory(inventoryData);
+        console.log(inventoryData)
+      }
+  
+      fetchInventory();
+
+    }, []);
+
+  return (
+    <>
+      <h1>Inventory</h1>
+      {inventory.length > 0 
+      ?
+      inventory.map((i) => <ItemCard key={i.id} id={i.id} user_id={i.user_id} name={i.item_name} description={i.description} quantity={i.quantity}/>)
+      :
+      <p>loading</p>
+      }
+    </>
+  );
+};
+
+export default AllItems;

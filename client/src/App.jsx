@@ -8,6 +8,7 @@ import CreateAccount from './pages/CreateAccount.jsx';
 import MyInventory from './pages/MyInventory.jsx';
 import CreateItem from './pages/CreateItem.jsx';
 import Details from './pages/Details.jsx';
+import AllItems from './pages/AllItems.jsx';
 
 
 const api = "http://localhost:3001"
@@ -23,7 +24,8 @@ function App() {
           <Route path = '/my-inventory' element={<MyInventory api = {api} userid = {userId}/>}/>
           {/* conditionally renders the create item link if user is logged in */}
           {userId ? <Route path = '/create-item' element={<CreateItem api = {api} userId = {userId}/>}/> : null }
-          <Route path = '/details/:id' element={<Details api={api}></Details>}/>
+          <Route path = '/details/:id' element={<Details api={api} userId={userId}></Details>}/>
+          <Route path = '/items' element = {<AllItems api={api}/>}/>
           
         </Route>
       </Routes>
