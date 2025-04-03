@@ -49,7 +49,7 @@ const CreateAccount = ({ api}) => {
             User Name: <input name="userName"></input>
           </label>
           <label>
-            Password: <input name="password"></input>
+            Password: <input type='password' name="password"></input>
           </label>
           <button type="submit"> Create </button>
           </div>

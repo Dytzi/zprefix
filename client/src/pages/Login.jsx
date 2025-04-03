@@ -18,8 +18,8 @@ const Login = ({ api, setUserId }) => {
         password: password,
       });
 
-      alert("Login successful, You'll Now Be Redirected To Your Inventory")
-
+      alert("Login successful, You'll Now Be Redirected To Your Inventory", response.data);
+      console.log(response.data.id);
       setUserId(response.data.id); // set UserId to imitate a logged in user
       navigate('/my-inventory')
     } catch (err) {
@@ -39,7 +39,7 @@ const Login = ({ api, setUserId }) => {
           User Name: <input name="userName"></input>
         </label>
         <label>
-          Password: <input name="password"></input>
+          Password: <input type='password'name="password"></input>
         </label>
         <button type="submit"> Login </button>
       </form>

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import ItemCard from "../components/ItemCard";
-import { useNavigate } from "react-router-dom";
+
 
 
 const MyInventory = ({ api, userid }) => {
