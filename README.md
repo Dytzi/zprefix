@@ -11,7 +11,7 @@
 
 3. if not using existing database `cd server` `npx knex migrate:latest` `npx knex seed:run` for a sample database
 
-4. To spin up the app do `cd server` `npm run dev` `cd client` `npm run dev` 
+4. To spin up the app do `cd server` `npm i` `npm run dev` then in a new terminal `cd client` `npm i` `npm run dev` 
 
 5. Go to localhost:3000 and the app should be running there
 
@@ -25,7 +25,6 @@
 
 3. Clicking on an item will give you the ability to view its details as well as the ability to edit and delete if the item belongs to your account
 ![alt text](image-7.png)
-
 
 4. Whereas if you're logged out or if you're not the item owner, the ability doesn't exist
 ![alt text](image-8.png)
