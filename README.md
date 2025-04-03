@@ -9,10 +9,9 @@
 2. if using your existing database, make sure the column name are as shown
  ![alt text](image-1.png)
 
-3. if not using existing database cd into server and do npx knex migrate:latest and then npx knex seed:run for a sample database
+3. if not using existing database `cd server` `npx knex migrate:latest` `npx knex seed:run` for a sample database
 
-4. If not using existing database cd into client and do npm run dev
-cd into server and do npm run dev
+4. To spin up the app do `cd server` `npm run dev` `cd client` `npm run dev` 
 
 5. Go to localhost:3000 and the app should be running there
 
