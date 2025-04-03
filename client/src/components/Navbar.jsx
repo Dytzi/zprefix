@@ -1,6 +1,11 @@
 import { Link } from "react-router-dom";
 
-const Navbar = ({ userId }) => {
+const Navbar = ({ userId, setUserId}) => {
+
+  function logOut(){
+    setUserId(null)
+  }
+
   return (
     <nav>
       <div style={{ display: "flex", justifyContent: "space-between" }}>
@@ -10,6 +15,7 @@ const Navbar = ({ userId }) => {
         {userId  ? <Link to="/my-inventory">My Inventory</Link> : null} 
         {/* conditionally renders the create item link if user is logged in */}
         {userId  ? <Link to="/create-item">Create Item</Link> : null} 
+        {userId  ? <Link to="/" onClick={logOut}>Log Out</Link> : null} 
 
         <Link to='/items'>All Items</Link>
       </div>
