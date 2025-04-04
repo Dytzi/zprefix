@@ -28,3 +28,20 @@
 
 4. Whereas if you're logged out or if you're not the item owner, the ability doesn't exist
 ![alt text](image-8.png)
+
+# API Endpoint 
+
+- Get
+    - /items/:id                get specific item
+    - /items                    get all items
+    - /my-inventory/:userid     get all item belonging to specific user
+- Post
+    - /users-create             create user account
+    - /items-create             create item 
+    - /users                    used for login functionality
+
+- Delete 
+    - /items/:id                delete specific item
+
+- Patch
+    - /items/:id                modify specific item 
