@@ -21,7 +21,7 @@ const ItemCard = ({ id, user_id, name, description, quantity }) => {
     <Card>
       <CardActionArea onClick={handleCardClick}>
         <CardContent>
-          <Typography>{name}</Typography>
+          <Typography style={{ fontWeight: 'bold' }}>{name}</Typography>
           <Typography>{description}</Typography>
           <Typography>{quantity}</Typography>
         </CardContent>
