@@ -1,9 +1,12 @@
 import axios from "axios";
 import "./CreateAccount.css";
+import { useNavigate } from "react-router-dom";
 
 
 // page to create a new user 
 const CreateAccount = ({ api}) => {
+
+  const navigate = useNavigate()
   async function createAccount(formData) {
     let userName = formData.get("userName");
     let password = formData.get("password");
@@ -23,6 +26,7 @@ const CreateAccount = ({ api}) => {
 
       console.log("Account Created", response.data);
       alert("Account Successfully Created")
+      navigate('/login')
     
     } catch (err) {
       console.log(err);
